@@ -2,60 +2,52 @@
 
 namespace TrafficLightAndEncapsulation
 {
-    internal class TrafficLight
+    internal class TrafficLightV0
     {
-        public int Phase { get; private set; }
+        private bool _red;
+        private bool _yellow;
+        private bool _green;
 
-        //public int Phase
-        //{
-        //    get
-        //    {
-        //        return _phase;
-        //    }
-        //    private set
-        //    {
-        //        _phase = value;
-        //    } 
-        //}
-
-        //public int GetPhase()
-        //{
-        //    return _phase;
-        //}
-
-        //public void SetPhase(int phase)
-        //{
-        //    _phase = phase;
-        //}
-
-        public TrafficLight()
+        public TrafficLightV0()
         {
+            _red = true;
         }
 
-        public TrafficLight(int phase)
-        {
-            if (phase >= 0 && phase <= 3)
-            {
-                Phase = phase;
-            }
-        }
-
+        //public TrafficLightV0(int phase)
+        //{
+            
+        //    _red = red;
+        //    _yellow = yellow;
+        //    _green = green;
+        //}
 
         public void Next()
         {
-            Phase++;
-            if (Phase == 4) Phase = 0;
-            //_phase = _phase == 4 ? 0 : _phase + 1;
-            //_phase = (_phase + 1) % 4;
+            if (_red && !_yellow)
+            {
+                _yellow = true;
+            }
+            else if (_red)
+            {
+                _red = false;
+                _yellow = false;
+                _green = true;
+            }
+            else if (_green)
+            {
+                _green = false;
+                _yellow = true;
+            }
+            else if (_yellow)
+            {
+                _yellow = false;
+                _red = true;
+            }
         }
 
         public void Show()
         {
-            var red = Phase < 2;
-            var yellow = Phase is 1 or 3;
-            //var yellow = _phase % 2 == 1;
-            var green = Phase == 2;
-            Show(red, yellow, green);
+            Show(_red, _yellow, _green);
         }
 
         private static void Show(bool red, bool yellow, bool green)
@@ -81,5 +73,3 @@ namespace TrafficLightAndEncapsulation
         }
     }
 }
-
-
