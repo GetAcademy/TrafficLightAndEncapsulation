@@ -1,0 +1,6 @@
+Trafikklys
+ - skrive mer objektorientert
+ - innkapsling - mulig å bytte implementasjon
+ - properties
+ - andre eksempler?
+ - generelt om objektorientert tenkning
